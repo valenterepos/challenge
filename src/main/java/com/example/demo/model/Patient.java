@@ -45,5 +45,37 @@ public class Patient {
         this.pathologies = new ArrayList<>();
     }
 
+    public List<Consult> getConsults() {
+        return new ArrayList<>(consults);
+    }
+
+    public List<Pathology> getPathologies() {
+        return new ArrayList<>(pathologies);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setConsults(List<Consult> consults) {
+        this.consults = consults;
+    }
+
+    public void setPathologies(List<Pathology> pathologies) {
+        this.pathologies = pathologies;
+    }
+
 
 }

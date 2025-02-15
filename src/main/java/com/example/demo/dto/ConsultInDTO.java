@@ -7,12 +7,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ConsultInDTO {
 
     private Long doctorId;
     private Long patientId;
+
+    public ConsultInDTO(Long doctorId, Long patientId) {
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+    }
+
     public Long getDoctorId() {
         return doctorId;
     }

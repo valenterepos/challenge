@@ -14,4 +14,12 @@ public class SymptomDTO {
         this.description = description;
     }
 
+    public Long getSymptomId() {
+        return symptomId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
