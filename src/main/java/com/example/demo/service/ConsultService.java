@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ConsultOutDTO;
+import com.example.demo.dto.TopSpecialityResponseDTO;
 import com.example.demo.model.Consult;
 import com.example.demo.model.Doctor;
 import com.example.demo.model.Patient;
@@ -9,6 +10,8 @@ import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsultService {
@@ -39,5 +42,24 @@ public class ConsultService {
         response.setPatientId(savedConsult.getPatient().getId());
 
         return response;
+    }
+
+    public List<TopSpecialityResponseDTO> getTopSpecialities(){
+
+        List<Consult> consults = consultRepository.findAll();
+        Map<String, Set<Long>> specialtyToPatients = new HashMap<>();
+
+        for (Consult consult : consults) {
+            String specialty = consult.getDoctor().getSpecialty().name();
+            Long patientId = consult.getPatient().getId();
+
+            specialtyToPatients.computeIfAbsent(specialty, k -> new HashSet<>()).add(patientId);
+        }
+
+        return specialtyToPatients.entrySet().stream()
+                .filter(entry -> entry.getValue().size() > 2)
+                .map(entry -> new TopSpecialityResponseDTO(entry.getKey(), entry.getValue().size()))
+                .collect(Collectors.toList());
+
     }
 }
