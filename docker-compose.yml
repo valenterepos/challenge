@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:14.6
+    container_name: hospital_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: hospital
+    ports:
+      - "5432:5432"
+    networks:
+      - hospital_network
+
+  hospital_app:
+    image: hospital-api
+    container_name: hospital_app
+    restart: always
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hospital
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
+    networks:
+      - hospital_network
+
+networks:
+  hospital_network:

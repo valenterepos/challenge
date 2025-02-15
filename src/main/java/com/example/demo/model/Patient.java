@@ -2,7 +2,9 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 @Table(name = "patient")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Patient {
 
     @Id
@@ -29,7 +33,8 @@ public class Patient {
     @ManyToMany
     @JoinTable(
             name = "patient_pathologies",
-            joinColumns = @JoinColumn(name = "pathology_id")
+            joinColumns = @JoinColumn(name = "patient_id"),
+            inverseJoinColumns = @JoinColumn(name = "pathology_id")
     )
     private List<Pathology> pathologies;
 

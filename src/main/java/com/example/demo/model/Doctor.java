@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,20 @@ public class Doctor {
         this.specialty = specialty;
         this.consults = consults;
     }
+    public Specialty getSpecialty() {
+        return specialty;
+    }
 
+    public List<Consult> getConsults() {
+        return new ArrayList<>(consults);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 }

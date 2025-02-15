@@ -21,7 +21,8 @@ public class Pathology {
     @ManyToMany
     @JoinTable(
             name = "pathology_symptoms",
-            joinColumns = @JoinColumn(name = "pathology_id")
+            joinColumns = @JoinColumn(name = "pathology_id"),
+            inverseJoinColumns = @JoinColumn(name = "symptom_id")
     )
     private List<Symptom> symptoms;
 
