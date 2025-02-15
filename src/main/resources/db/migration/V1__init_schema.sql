@@ -1,31 +1,31 @@
-CREATE TABLE specialty (
+CREATE TABLE specialties (
                              id BIGSERIAL PRIMARY KEY,
                              name VARCHAR(255) UNIQUE NOT NULL
 );
 
 
-CREATE TABLE doctor (
+CREATE TABLE doctors (
                          id BIGSERIAL PRIMARY KEY,
                          name VARCHAR(255) UNIQUE NOT NULL,
                          specialty VARCHAR(50) NOT NULL
 );
 
 
-CREATE TABLE patient (
+CREATE TABLE patients (
                           id BIGSERIAL PRIMARY KEY,
                           name VARCHAR(255) NOT NULL,
                           age INT NOT NULL
 );
 
 
-CREATE TABLE consult (
+CREATE TABLE consults (
                           id BIGSERIAL PRIMARY KEY,
                           doctor_id BIGINT NOT NULL REFERENCES doctors(id),
                           patient_id BIGINT NOT NULL REFERENCES patients(id)
 );
 
 
-CREATE TABLE pathology (
+CREATE TABLE pathologies (
                              id BIGSERIAL PRIMARY KEY,
                              name VARCHAR(255) NOT NULL
 );
@@ -38,7 +38,7 @@ CREATE TABLE patient_pathologies (
 );
 
 
-CREATE TABLE symptom (
+CREATE TABLE symptoms (
                           id BIGSERIAL PRIMARY KEY,
                           name VARCHAR(255) NOT NULL,
                           description TEXT NOT NULL
@@ -52,7 +52,7 @@ CREATE TABLE pathology_symptoms (
 );
 
 
-INSERT INTO specialty (name) VALUES
+INSERT INTO specialties (name) VALUES
                                    ('DERMATOLOGY'),
                                    ('OPHTHALMOLOGY'),
                                    ('RADIOLOGY'),
@@ -60,7 +60,7 @@ INSERT INTO specialty (name) VALUES
                                    ('PEDIATRICS');
 
 
-INSERT INTO doctor (name, specialty) VALUES
+INSERT INTO doctors (name, specialty) VALUES
                                           ('António', 'DERMATOLOGY'),
                                           ('Maria', 'OPHTHALMOLOGY'),
                                           ('Carlos', 'RADIOLOGY'),
@@ -68,7 +68,7 @@ INSERT INTO doctor (name, specialty) VALUES
                                           ('Paulo', 'PEDIATRICS');
 
 
-INSERT INTO patient (name, age) VALUES
+INSERT INTO patients (name, age) VALUES
                                      ('Manuel', 53),
                                      ('Joana', 32),
                                      ('Ana', 25),
@@ -77,7 +77,7 @@ INSERT INTO patient (name, age) VALUES
                                      ('Miguel', 40);
 
 
-INSERT INTO consult (doctor_id, patient_id) VALUES
+INSERT INTO consults (doctor_id, patient_id) VALUES
                                                  (1, 1),
                                                  (1, 1),
                                                  (2, 1),
@@ -88,7 +88,7 @@ INSERT INTO consult (doctor_id, patient_id) VALUES
                                                  (2, 6);
 
 
-INSERT INTO pathology (name) VALUES
+INSERT INTO pathologies (name) VALUES
                                    ('Pathology 1'),
                                    ('Pathology 2'),
                                    ('Pathology 3'),
@@ -104,7 +104,7 @@ INSERT INTO patient_pathologies (patient_id, pathology_id) VALUES
                                                                (4, 1), (5, 2),
                                                                (6, 3);
 
-INSERT INTO symptom (name, description) VALUES
+INSERT INTO symptoms (name, description) VALUES
                                              ('Symptom 1', 'Description for symptom 1'),
                                              ('Symptom 2', 'Description for symptom 2'),
                                              ('Symptom 3', 'Description for symptom 3'),

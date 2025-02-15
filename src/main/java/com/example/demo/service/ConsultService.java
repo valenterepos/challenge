@@ -8,6 +8,7 @@ import com.example.demo.model.Patient;
 import com.example.demo.repository.ConsultRepository;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -26,6 +27,7 @@ public class ConsultService {
         this.patientRepository = patientRepository;
     }
 
+    @Transactional
     public ConsultOutDTO createConsult(Long doctorId, Long patientId) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));

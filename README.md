@@ -12,12 +12,13 @@ Before running the application, ensure you have the following installed:
 * Postgres
 
 * JMeter (for performance testing)
-
 #### Installation and Setup
 
 1. Clone the Repository
 
-git clone https://github.com/valenterepos/codechallenge
+git clone https://github.com/valenterepos/challenge
+
+git checkout master
 
 2. Start the Application
 
@@ -82,10 +83,23 @@ docker logs hospital-app --tail=100
 docker compose stop
 
 
-#### Running the Application
+#### Restart the Application
 
-docker compose start or docker-compose up -d hospital_app
-if there are any changes
+docker compose start 
+or docker-compose up -d hospital_app if there are any changes to the code
+
+
+#### Performance Testing with JMeter
+
+Performance tests were conducted using JMeter. You can import and run the provided TestJMETER.jmx file:
+
+1. Open JMeter
+
+2. Import the file TestJMETER.jmx
+
+3. Make sure that the application is running
+
+3. Run the test and view results on Results Tree
 
 
 #### Notes
